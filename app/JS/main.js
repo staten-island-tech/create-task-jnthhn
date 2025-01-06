@@ -56,10 +56,26 @@ const array = [
   { numberCard: "Ace of Spades", number: 14, suit: "Spades" },
 ];
 
-const randomIndex = Math.floor(Math.random() * array.length);
+function getRandomCard() {
+  const randomIndex = Math.floor(Math.random() * array.length);
 
-// Get the random card object from the array
-const randomCard = array[randomIndex];
+  return array[randomIndex];
+}
 
-// Log the random card
-console.log(`Card: ${randomCard.numberCard}, Value: ${randomCard.number}`);
+function checkCard() {
+  const guessedCard = document
+    .getElementById("guessedCard")
+    .value.trim()
+    .toLowerCase();
+  const randomCard = getRandomCard();
+
+  const cardName = randomCard.numberCard.toLowerCase();
+
+  const messageElement = document.getElementById("message");
+
+  if (guessedCard === cardName) {
+    messageElement.textContent = `Congratulations! You guessed the card: ${randomCard.numberCard}`;
+  } else {
+    messageElement.textContent = `Sorry, the card was: ${randomCard.numberCard}. Better luck next time!`;
+  }
+}
