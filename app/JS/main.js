@@ -56,26 +56,37 @@ const array = [
   { numberCard: "Ace of Spades", number: 14, suit: "Spades" },
 ];
 
+// Function to get a random card from the deck (only once at the start)
+let currentCard = getRandomCard();
+
+// Function to get a random card (we will only call this once to set the initial card)
 function getRandomCard() {
   const randomIndex = Math.floor(Math.random() * array.length);
-
   return array[randomIndex];
 }
 
+// Function to compare the guessed card with the actual card
+function compareCards(guessedCard, actualCard) {
+  const normalizedGuessedCard = guessedCard.trim().toLowerCase();
+  const normalizedActualCard = actualCard.numberCard.trim().toLowerCase();
+
+  return normalizedGuessedCard === normalizedActualCard;
+}
+
+// Function to be called when the user clicks the "Guess Card" button
 function checkCard() {
-  const guessedCard = document
-    .getElementById("guessedCard")
-    .value.trim()
-    .toLowerCase();
-  const randomCard = getRandomCard();
+  const guessedCard = document.getElementById("guessedCard").value.trim();
+  const message = document.getElementById("message");
 
-  const cardName = randomCard.numberCard.toLowerCase();
-
-  const messageElement = document.getElementById("message");
-
-  if (guessedCard === cardName) {
-    messageElement.textContent = `Congratulations! You guessed the card: ${randomCard.numberCard}`;
+  if (compareCards(guessedCard, currentCard)) {
+    message.textContent = `Congratulations! You guessed the card correctly! It was ${currentCard.numberCard}.`;
   } else {
-    messageElement.textContent = `Sorry, the card was: ${randomCard.numberCard}. Better luck next time!`;
+    message.textContent = `Incorrect. Try again! The card was ${currentCard.numberCard}.`;
   }
 }
+
+// Add event listener to the button to call checkCard() on click
+document.addEventListener("DOMContentLoaded", () => {
+  const guessButton = document.getElementById("guessButton");
+  guessButton.addEventListener("click", checkCard);
+});
