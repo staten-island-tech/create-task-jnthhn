@@ -80,6 +80,8 @@ function checkCard() {
 
   if (compareCards(guessedCard, currentCard)) {
     message.textContent = `Congratulations! You guessed the card correctly! It was ${currentCard.numberCard}.`;
+    currentCard = getRandomCard();
+    message.textContent += " A new card has been chosen!";
   } else {
     message.textContent = `Incorrect. Try again! The card was ${currentCard.numberCard}.`;
   }
