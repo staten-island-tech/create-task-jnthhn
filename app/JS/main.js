@@ -92,7 +92,7 @@ function checkCard() {
   }
 
   if (guessedCard.number === currentCard.number) {
-    message.textContent = `The number is correct, but the suit is wrong! The correct card was the ${currentCard.numberCard}. Try again!`;
+    message.textContent = `The number is correct, but the suit is wrong! Try again!`;
     return;
   }
 
