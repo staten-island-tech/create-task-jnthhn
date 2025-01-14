@@ -63,9 +63,9 @@ function getRandomCard() {
   return array[randomIndex];
 }
 
-function compareCards(guessedCard, actualCard) {
+function compareCards(guessedCardInput, actualCard) {
   return (
-    guessedCard.trim().toLowerCase() ===
+    guessedCardInput.trim().toLowerCase() ===
     actualCard.numberCard.trim().toLowerCase()
   );
 }
