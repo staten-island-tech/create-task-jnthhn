@@ -64,10 +64,10 @@ function getRandomCard() {
 }
 
 function compareCards(guessedCard, actualCard) {
-  const normalizedGuessedCard = guessedCard.trim().toLowerCase();
-  const normalizedActualCard = actualCard.numberCard.trim().toLowerCase();
-
-  return normalizedGuessedCard === normalizedActualCard;
+  return (
+    guessedCard.trim().toLowerCase() ===
+    actualCard.numberCard.trim().toLowerCase()
+  );
 }
 
 function checkCard() {
