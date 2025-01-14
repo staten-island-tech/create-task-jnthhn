@@ -56,16 +56,13 @@ const array = [
   { numberCard: "Ace of Spades", number: 14, suit: "Spades" },
 ];
 
-// Function to get a random card from the deck (only once at the start)
 let currentCard = getRandomCard();
 
-// Function to get a random card (we will only call this once to set the initial card)
 function getRandomCard() {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
 }
 
-// Function to compare the guessed card with the actual card
 function compareCards(guessedCard, actualCard) {
   const normalizedGuessedCard = guessedCard.trim().toLowerCase();
   const normalizedActualCard = actualCard.numberCard.trim().toLowerCase();
@@ -73,22 +70,27 @@ function compareCards(guessedCard, actualCard) {
   return normalizedGuessedCard === normalizedActualCard;
 }
 
-// Function to be called when the user clicks the "Guess Card" button
 function checkCard() {
-  const guessedCard = document.getElementById("guessedCard").value.trim();
+  const guessedCardInput = document.getElementById("guessedCard").value.trim();
   const message = document.getElementById("message");
 
-  if (compareCards(guessedCard, currentCard)) {
+  const guessedCard = array.find(
+    (card) => card.numberCard.toLowerCase() === guessedCardInput.toLowerCase()
+  );
+
+  if (!guessedCard) {
+    message.textContent =
+      "Invalid card. Please enter a valid card (e.g., Ace of Spades).";
+    return;
+  }
+
+  if (compareCards(guessedCardInput, currentCard)) {
     message.textContent = `Congratulations! You guessed the card correctly! It was ${currentCard.numberCard}.`;
     currentCard = getRandomCard();
     message.textContent += " A new card has been chosen!";
-  } else {
-    message.textContent = `Incorrect. Try again! The card was ${currentCard.numberCard}.`;
+    return;
   }
-}
 
-// Add event listener to the button to call checkCard() on click
-document.addEventListener("DOMContentLoaded", () => {
-  const guessButton = document.getElementById("guessButton");
-  guessButton.addEventListener("click", checkCard);
-});
+  const feedback = guessedCard.number < currentCard.number ? "higher" : "lower";
+  message.textContent = `Incorrect. Your guess is too ${feedback}! Try again!`;
+}
