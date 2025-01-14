@@ -91,7 +91,12 @@ function checkCard() {
     return;
   }
 
-  const feedback = guessedCard.number < currentCard.number ? "higher" : "lower";
+  if (guessedCard.number === currentCard.number) {
+    message.textContent = `The number is correct, but the suit is wrong! The correct card was the ${currentCard.numberCard}. Try again!`;
+    return;
+  }
+
+  const feedback = guessedCard.number < currentCard.number ? "high" : "low";
   message.textContent = `Incorrect. Your guess is too ${feedback}! Try again!`;
 }
 
