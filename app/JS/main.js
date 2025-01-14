@@ -96,7 +96,7 @@ function checkCard() {
     return;
   }
 
-  const feedback = guessedCard.number < currentCard.number ? "high" : "low";
+  const feedback = guessedCard.number < currentCard.number ? "low" : "high";
   message.textContent = `Incorrect. Your guess is too ${feedback}! Try again!`;
 }
 
