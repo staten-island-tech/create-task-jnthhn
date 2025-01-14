@@ -94,3 +94,8 @@ function checkCard() {
   const feedback = guessedCard.number < currentCard.number ? "higher" : "lower";
   message.textContent = `Incorrect. Your guess is too ${feedback}! Try again!`;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const guessButton = document.getElementById("guessButton");
+  guessButton.addEventListener("click", checkCard);
+});
