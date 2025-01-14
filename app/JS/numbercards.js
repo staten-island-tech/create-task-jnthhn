@@ -1,4 +1,4 @@
-const array = [
+export const array = [
   { numberCard: "2 of Hearts", number: 2, suit: "Hearts" },
   { numberCard: "3 of Hearts", number: 3, suit: "Hearts" },
   { numberCard: "4 of Hearts", number: 4, suit: "Hearts" },
