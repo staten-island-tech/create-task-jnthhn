@@ -18,9 +18,12 @@ function checkCard() {
   const guessedCardInput = document.getElementById("guessedCard").value.trim();
   const message = document.getElementById("message");
 
-  const guessedCard = array.find(
-    (card) => card.numberCard.toLowerCase() === guessedCardInput.toLowerCase()
-  );
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].numberCard.toLowerCase() === guessedCardInput.toLowerCase()) {
+      guessedCard = array[i];
+      break;
+    }
+  }
 
   if (!guessedCard) {
     message.textContent =
