@@ -58,8 +58,6 @@ const array = [
 
 const randomIndex = Math.floor(Math.random() * array.length);
 
-// Get the random card object from the array
 const randomCard = array[randomIndex];
 
-// Log the random card
 console.log(`Card: ${randomCard.numberCard}, Value: ${randomCard.number}`);
